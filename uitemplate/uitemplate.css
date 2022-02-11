@@ -96,3 +96,23 @@ input[type="date"] {
 #in {
     background-color: aliceblue;
 }
+
+#comment {
+    border-radius: 5px;
+    width: 100px;
+    height: 25px;
+    margin-top: 0px;
+}
+
+#submitcomment {
+    border-radius: 10px;
+    font-weight: lighter;
+    width: 20px;
+    height: 20px;background-color: aliceblue;
+    color: rgb(8, 81, 145);
+    position: absolute;
+    align-items: center;
+    margin-top: -25px;
+    margin-left: -10px
+}
+
