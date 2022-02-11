@@ -105,14 +105,31 @@ input[type="date"] {
 }
 
 #submitcomment {
-    border-radius: 10px;
-    font-weight: lighter;
-    width: 20px;
-    height: 20px;background-color: aliceblue;
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: larger;
+    width: 30px;
+    height: 30px;background-color: aliceblue;
     color: rgb(8, 81, 145);
     position: absolute;
     align-items: center;
-    margin-top: -25px;
+    margin-top: -35px;
     margin-left: -10px
+}
+
+#voteup {
+    float: right;
+    margin-top: -18px;
+    margin-right: 840px;
+    color:black;
+    font-size: 25px;
+}
+
+#votedown {
+    float: right;
+    margin-top: -25px;
+    margin-right: 810px;
+    color:black;
+    font-size: 25px;
 }
 
