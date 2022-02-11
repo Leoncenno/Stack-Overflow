@@ -1,0 +1,135 @@
+html {
+    background-color: rgba(36, 71, 146, 0.616);
+    
+}
+
+#logo {
+    width: 50px;
+    border-radius: 25px;
+    float: left;
+    margin-right: 10px;
+    position: relative;
+    top: 0px;
+}
+h1 {
+    font-size: smaller;
+    color: rgb(102, 47, 8);
+    border-color: black;
+    margin-bottom: 0ex;
+    position: relative;
+    top: 10px;
+}
+h3 {
+    font-size: smaller;
+    color: darkslategrey;
+    border-color: black;
+    margin-top: 0ex;
+    position: relative;
+    top: 12px;
+
+}
+
+#login {
+    position: relative;
+    right: -320px;
+    position: relative; top: 20px;
+}
+
+#sign {
+    color: rgb(5, 5, 90);
+    font-size: xx-large;
+    font-weight: bolder;
+    margin-bottom: 0ex;
+    position: relative;
+    right: -400px;
+}
+#copyright {
+    font-size: smaller;
+    font-weight: bold;
+    color: black;
+    position: relative;
+    top: 200px;
+    text-align: center;
+}
+
+input[type="text"] {
+    border-radius: 10px;
+    width: 200px;
+    height: 20px;
+    background-color: rgba(213, 221, 226, 0.959);
+    margin-top: 10px;
+
+}
+
+input[type="checkbox"] {
+    border-radius: 1px;
+    margin-top: 15px;
+    position: relative;
+    left: 60px;
+    background-color: rgba(213, 221, 226, 0.959);
+    color: rgba(213, 221, 226, 0.959); 
+}
+
+input[type="submit"] {
+    width: 80px;
+    border-radius: 5px;
+    background-color: rgba(5, 5, 90, 0.171);
+    position: relative;
+    left: 130px;
+    margin-top: 15px;
+}
+
+#submit {
+    border-radius: 5px;
+    background-color: rgba(5, 5, 90, 0.171);
+    height: 19px;
+}
+
+input[type="date"] {
+    border-radius: 10px;
+    width: 200px;
+    height: 20px;
+    background-color: rgba(213, 221, 226, 0.959);
+    margin-top: 10px;
+}
+
+#in {
+    background-color: aliceblue;
+}
+
+#comment {
+    border-radius: 5px;
+    width: 100px;
+    height: 25px;
+    margin-top: 0px;
+}
+
+#submitcomment {
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: larger;
+    width: 30px;
+    height: 30px;background-color: aliceblue;
+    color: rgb(8, 81, 145);
+    position: absolute;
+    align-items: center;
+    margin-top: -35px;
+    margin-left: -10px
+}
+
+#voteup {
+    float: right;
+    margin-top: -18px;
+    margin-right: 840px;
+    color:black;
+    font-size: 25px;
+}
+
+#votedown {
+    float: right;
+    margin-top: -25px;
+    margin-right: 810px;
+    color:black;
+    font-size: 25px;
+}
+
