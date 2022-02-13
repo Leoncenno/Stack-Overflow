@@ -1,4 +1,4 @@
-import psycopg2
+import psycopg2.extras
 import config
 
 class DbConnect(): #connect to the StackOverflow database
@@ -16,7 +16,7 @@ class DbConnect(): #connect to the StackOverflow database
                 user="postgres",
                 password="root")
 
-            self.cur = self.conn.cursor() #create a cursor
+            self.cur = self.conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) #create a cursor
             self.conn.autocommit = True
         
 
@@ -46,8 +46,15 @@ class DbConnect(): #connect to the StackOverflow database
         self.cur.execute('SELECT * FROM questions WHERE question_id = %s', question_id)
         one_question = self.cur.fetchone()
         if one_question != None:
-            return {'id': question_id, 'question': one_question[1], 'description': one_question[2]}
+            return one_question
         else:
             return 'Question doesnt exist!'
 
+    def get_all_answers(self, question_id):
+        self.cur.execute('SELECT * FROM answers WHERE question_id = %s', question_id)
+        answers = self.cur.fetchall()
+        if answers != None:
+            return answers
+        else:
+            return 'No answers for this question!'
 

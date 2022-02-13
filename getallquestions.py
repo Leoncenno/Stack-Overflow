@@ -8,7 +8,7 @@ app.config["DEBUG"] = True
 
 db = DbConnect()
 
-@app.route('/api/v1/questions')
+@app.route('/api/v1/questions', methods=['GET'])
 def all_questions():
     questions = db.get_all_questions()
     return jsonify(questions)
@@ -33,5 +33,10 @@ def one_question(id):
     question = db.get_one_question(id)
     return jsonify(question)
 
+
+@app.route('/api/v1/questions/<id>/answers', methods=['GET'])
+def answers(id):
+    answers = db.get_all_answers(id)
+    return jsonify(answers)
 
 app.run()
