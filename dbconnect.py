@@ -1,4 +1,3 @@
-from http.client import OK
 import psycopg2
 import config
 
@@ -18,6 +17,7 @@ class DbConnect(): #connect to the StackOverflow database
                 password="root")
 
             self.cur = self.conn.cursor() #create a cursor
+            self.conn.autocommit = True
         
 
         except (Exception, psycopg2.DatabaseError) as error:
@@ -31,6 +31,14 @@ class DbConnect(): #connect to the StackOverflow database
 
     def post_a_question(self, question, description):
         self.cur.execute('INSERT INTO questions (question, description) VALUES (%s, %s)', (question, description))
-        self.conn.commit()
         return {'question': question, 'description': description}
+
+    def update_a_question(self, question_id, question):
+        self.cur.execute('SELECT * FROM questions WHERE question_id = %s', question_id)
+        chk = self.cur.fetchone()
+        if chk != None:
+            self.cur.execute('UPDATE questions SET question = %s WHERE question_id = %s', (question, question_id))
+            return {'question': question}
+        else:
+            return 'Question doesnt exist!'
 

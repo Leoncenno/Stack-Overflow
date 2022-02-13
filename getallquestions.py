@@ -20,4 +20,11 @@ def post_question():
     return jsonify(qn)
 
 
+@app.route('/api/v1/questions/<id>', methods=['PUT'])
+def update_question(id):
+    new_question = request.json
+    updated_question = db.update_a_question(id, new_question['question'])
+    return jsonify(updated_question)
+
+
 app.run()
