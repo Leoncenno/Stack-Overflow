@@ -1,3 +1,4 @@
+from http.client import OK
 import psycopg2
 import config
 
@@ -21,13 +22,15 @@ class DbConnect(): #connect to the StackOverflow database
 
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
-        #finally:
-            #if self.conn is not None:
-                #self.conn.close()
-               # print('Database connection closed.')
 
 
     def get_all_questions(self):
         self.cur.execute('SELECT * FROM questions')
         all_questions = self.cur.fetchall()
         return all_questions
+
+    def post_a_question(self, question, description):
+        self.cur.execute('INSERT INTO questions (question, description) VALUES (%s, %s)', (question, description))
+        self.conn.commit()
+        return {'question': question, 'description': description}
+

@@ -1,3 +1,4 @@
+from xml.etree.ElementTree import QName
 from flask import Flask, request, jsonify, json
 from dbconnect import DbConnect
 
@@ -10,5 +11,13 @@ db = DbConnect()
 def all_questions():
     questions = db.get_all_questions()
     return jsonify(questions)
+
+
+@app.route('/api/v1/questions', methods=['POST'])
+def post_question():
+    new_question = request.json
+    qn = db.post_a_question(new_question['question'], new_question['description'])
+    return jsonify(qn)
+
 
 app.run()
