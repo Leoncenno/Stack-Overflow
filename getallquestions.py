@@ -39,4 +39,11 @@ def answers(id):
     answers = db.get_all_answers(id)
     return jsonify(answers)
 
+
+@app.route('/api/v1/questions/<id>/answers', methods=['POST'])
+def post_answer(id):
+    new_answer = request.json
+    answer = db.post_an_answer(id, new_answer['answer'])
+    return jsonify(answer)
+
 app.run()

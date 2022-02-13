@@ -1,4 +1,5 @@
 import psycopg2.extras
+import psycopg2
 import config
 
 class DbConnect(): #connect to the StackOverflow database
@@ -58,3 +59,9 @@ class DbConnect(): #connect to the StackOverflow database
         else:
             return 'No answers for this question!'
 
+    def post_an_answer(self, question_id, answer):
+        self.cur.execute('SELECT * FROM questions WHERE question_id = %s', question_id)
+        chk = self.cur.fetchone()
+        if chk != None:
+            self.cur.execute('INSERT INTO answers (question_id, answer) VALUES (%s, %s)', (question_id, answer))
+            return answer
