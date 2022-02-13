@@ -1,3 +1,4 @@
+from crypt import methods
 from xml.etree.ElementTree import QName
 from flask import Flask, request, jsonify, json
 from dbconnect import DbConnect
@@ -25,6 +26,12 @@ def update_question(id):
     new_question = request.json
     updated_question = db.update_a_question(id, new_question['question'])
     return jsonify(updated_question)
+
+
+@app.route('/api/v1/questions/<id>', methods=['GET'])
+def one_question(id):
+    question = db.get_one_question(id)
+    return jsonify(question)
 
 
 app.run()

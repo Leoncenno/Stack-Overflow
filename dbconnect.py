@@ -42,3 +42,12 @@ class DbConnect(): #connect to the StackOverflow database
         else:
             return 'Question doesnt exist!'
 
+    def get_one_question(self, question_id):
+        self.cur.execute('SELECT * FROM questions WHERE question_id = %s', question_id)
+        one_question = self.cur.fetchone()
+        if one_question != None:
+            return {'id': question_id, 'question': one_question[1], 'description': one_question[2]}
+        else:
+            return 'Question doesnt exist!'
+
+
