@@ -1,0 +1,9 @@
+Get all questions
+---
+tags:
+  - Questions
+description: This endpoint returns all questions.
+
+responses: 
+  200:
+    description: Ok

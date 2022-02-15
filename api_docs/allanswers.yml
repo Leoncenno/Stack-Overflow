@@ -1,0 +1,16 @@
+Get all answers
+---
+tags:
+  - Answers
+description: This endpoint returns all answers to a specific qustion.
+
+parameters:
+  - in: path
+    name: id
+    description: question_id for a specific question to retrieve its answers.
+    required: true
+    type: integer
+
+responses: 
+  200:
+    description: Ok

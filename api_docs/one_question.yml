@@ -1,0 +1,16 @@
+Get a specific question
+---
+tags:
+  - Questions
+description: This is a GET request to retrieve a specific question using its id.
+
+parameters:
+  - in: path
+    name: id
+    description: question_id for a specific question to retrieve.
+    required: true
+    type: integer
+
+responses: 
+  201:
+    description: Ok
