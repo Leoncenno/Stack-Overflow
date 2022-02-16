@@ -1,6 +1,12 @@
 import psycopg2.extras
 import psycopg2
 import config
+from decouple import config
+
+dbhost = config('HOST')
+dbdatabase = config('DATABASE')
+dbuser = config ('USER')
+dbpassword = config('PASSWORD')
 
 class DbConnect(): #connect to the StackOverflow database
     def __init__(self):
@@ -12,15 +18,14 @@ class DbConnect(): #connect to the StackOverflow database
 
             print('connecting to StackOverflow Database...') #connect to StackOverflow server
             self.conn = psycopg2.connect(
-                host="localhost",
-                database="StackOverflow",
-                user="postgres",
-                password="root")
+                host=dbhost,
+                database=dbdatabase,
+                user=dbuser,
+                password=dbpassword)
 
             self.cur = self.conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) #create a cursor
             self.conn.autocommit = True
         
-
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
 
