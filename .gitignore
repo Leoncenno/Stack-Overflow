@@ -1,0 +1,6 @@
+venv
+.vscode
+__pycache__/model.cpython-38.pyc
+__pycache__/getallquestions.cpython-38.pyc
+__pycache__/dbconnect.cpython-38.pyc
+.env

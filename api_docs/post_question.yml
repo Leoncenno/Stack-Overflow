@@ -1,0 +1,19 @@
+Post a question
+---
+
+tags:
+  - Questions
+description: This end point posts a request to add a new question.
+
+parameters:
+  - in: body
+    name: Question
+    description: Post a question and its description as a dictionary, keys are 'question' and 'description' respectively
+    required: true
+    type: string
+    
+responses: 
+  201:
+    description: returns question and desscription entered.
+
+ 

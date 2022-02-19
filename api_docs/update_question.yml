@@ -1,0 +1,25 @@
+Update a question
+---
+tags:
+  - Questions
+description: This is a PUT request to update the questions posted.
+
+parameters:
+  - in: path
+    name: id
+    description: question_id for a specific question to modify.
+    required: true
+    type: integer
+
+  - in: body
+    name: Question
+    description: Post a question update as a dict value with 'question' as key.
+    required: true
+    type: string
+    schema:
+    id: bearer
+    
+
+responses: 
+  201:
+    description: Question updated

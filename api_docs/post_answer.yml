@@ -1,0 +1,25 @@
+Answer a question
+---
+tags:
+  - Answers
+description: This is a POST request to answer a specific question.
+
+parameters:
+  - in: path
+    name: id
+    description: question_id for a specific question to be answered.
+    required: true
+    type: integer
+
+  - in: body
+    name: Answer
+    description: Post answer as a dict value with 'answer' as key.
+    required: true
+    type: string
+    schema:
+    id: bearer
+    
+
+responses: 
+  201:
+    description: New answer added
