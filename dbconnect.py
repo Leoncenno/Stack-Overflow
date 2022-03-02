@@ -85,3 +85,8 @@ class DbConnect():  # connect to the StackOverflow database
     def sign_up(self, firstname, lastname, email, password1, password2, dateofbirth, username):
         self.cur.execute('INSERT INTO user_details (first_name, last_name, email, password, confirm_password, date_of_birth, user_name) VALUES (%s, %s, %s, %s, %s, %s, %s)',
                          (firstname, lastname, email, password1, password2, dateofbirth, username))
+    
+    def check_for_user(self, username):
+        self.cur.execute("SELECT * FROM user_details WHERE user_name = '{}'".format(username))
+        chk = self.cur.fetchone()
+        return chk
