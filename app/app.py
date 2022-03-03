@@ -2,13 +2,13 @@ from crypt import methods
 from enum import unique
 from xml.etree.ElementTree import QName
 from flask import Flask, request, jsonify, json
-from dbconnect import DbConnect
+from app.dbconnect import DbConnect
 from flasgger import Swagger
 from flasgger.utils import swag_from
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, JWTManager, jwt_required
 from decouple import config
-from validations import Validators
+from app.validations import Validators
 
 
 app = Flask(__name__)
@@ -35,11 +35,15 @@ def all_questions():
 def post_question():
     new_question = request.json
     is_question_empty = val.validate_missing_post(new_question['question'])
-    is_description_empty = val.validate_missing_post(new_question['description'])
-    is_question_empty_string = val.validate_empty_post(new_question['question'])
-    is_description_empty_string = val.validate_empty_post(new_question['description'])
+    is_description_empty = val.validate_missing_post(
+        new_question['description'])
+    is_question_empty_string = val.validate_empty_post(
+        new_question['question'])
+    is_description_empty_string = val.validate_empty_post(
+        new_question['description'])
     is_question_string = val.validate_nonstring_input(new_question['question'])
-    is_description_string = val.validate_nonstring_input(new_question['description'])
+    is_description_string = val.validate_nonstring_input(
+        new_question['description'])
     if is_question_empty:
         return jsonify('Txt area cannot be empty! Enter the question.'), 406
     if is_description_empty:
@@ -64,7 +68,8 @@ def post_question():
 def update_question(id):
     new_question = request.json
     is_question_empty = val.validate_missing_post(new_question['question'])
-    is_question_empty_string = val.validate_empty_post(new_question['question'])
+    is_question_empty_string = val.validate_empty_post(
+        new_question['question'])
     is_question_string = val.validate_nonstring_input(new_question['question'])
     is_id_string = val.validate_nonstring_input(id)
     if is_id_string is False:
@@ -75,8 +80,9 @@ def update_question(id):
         return jsonify('Txt area cannot be empty! Please type in question'), 406
     if is_question_string:
         return jsonify('Question cannot be numbers only!'), 406
-    else:   
-        updated_question = db.update_a_question(id, val.remove_spaces(new_question['question']))
+    else:
+        updated_question = db.update_a_question(
+            id, val.remove_spaces(new_question['question']))
         return jsonify(updated_question), 201
 
 
@@ -148,7 +154,8 @@ def create_new_user():
 
     is_dateofbirth_empty = val.validate_missing_post(date_of_birth)
     is_dateofbirth_empty_string = val.validate_empty_post(date_of_birth)
-    is_dateofbirth_correct_format = val.validate_date_of_birth_format(date_of_birth)
+    is_dateofbirth_correct_format = val.validate_date_of_birth_format(
+        date_of_birth)
 
     is_email_empty = val.validate_missing_post(email)
     is_email_empty_string = val.validate_empty_post(email)
@@ -193,9 +200,8 @@ def create_new_user():
     else:
         password = generate_password_hash(password_1)
         db.sign_up(first_name, last_name, email,
-                            password, password, date_of_birth, user_name)
+                   password, password, date_of_birth, user_name)
         return jsonify('Account registered succesfully'), 201
-        
 
 
 @app.route('/login', methods=['POST'])
@@ -213,11 +219,13 @@ def log_in():
         return jsonify('Please enter a valid username!'), 406
     else:
         user = db.check_for_user(username)
-        is_correct_password = check_password_hash(user['password'], request.json["password"])
+        is_correct_password = check_password_hash(
+            user['password'], request.json["password"])
         if is_correct_password:
             access_token = create_access_token(identity=username)
             return jsonify({'Token': access_token}), 200
         else:
-            return jsonify ('Wrong username or password'), 401
-    
-app.run()
+            return jsonify('Wrong username or password'), 401
+
+if __name__ == '__main__':
+    app.run()

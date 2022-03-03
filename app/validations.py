@@ -2,6 +2,7 @@ from flask import jsonify
 from werkzeug.security import generate_password_hash
 from datetime import datetime
 
+
 class Validators():
     def validate_missing_post(self, post):
         if post.isspace():
@@ -31,4 +32,3 @@ class Validators():
             return True
         except ValueError:
             return False
-       
